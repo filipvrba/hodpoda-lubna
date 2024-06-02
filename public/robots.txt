@@ -1,0 +1,3 @@
+User-agent: *
+
+Sitemap: https://hodman-bruno.vercel.app/sitemap.xml
