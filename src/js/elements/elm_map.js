@@ -5,14 +5,6 @@ export default class ElmMap extends HTMLElement {
     this.initElm()
   };
 
-  connectedCallback() {
-    return null
-  };
-
-  disconnectedCallback() {
-    return null
-  };
-
   initElm() {
     let template = `${`
 <section class='mb-4 text-center'>

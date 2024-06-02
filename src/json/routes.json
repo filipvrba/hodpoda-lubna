@@ -9,6 +9,11 @@
         "title": "Úvod",
         "endpoint": "uvod",
         "priority": 10
+      },
+      {
+        "title": "Galerie",
+        "endpoint": "galerie",
+        "priority": 1
       }
     ]
   }

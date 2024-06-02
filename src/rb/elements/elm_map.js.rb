@@ -7,12 +7,6 @@ export default class ElmMap < HTMLElement
     init_elm()
   end
 
-  def connected_callback()
-  end
-
-  def disconnected_callback()
-  end
-
   def init_elm()
     template = """
 <section class='mb-4 text-center'>

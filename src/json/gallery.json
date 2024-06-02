@@ -1,0 +1,44 @@
+{
+    "gallery": [
+        {
+            "name": "Předek pivnice s lavičkami",
+            "picture": "/jpg/gallery/pivnice_02.jpg"
+        },
+        {
+            "name": "Dětské hriště v zadní části",
+            "picture": "/jpg/gallery/hriste_01.jpg"
+        },
+        {
+            "name": "Dětské hriště v zadní části s více překážkami",
+            "picture": "/jpg/gallery/hriste_02.jpg"
+        },
+        {
+            "name": "Hlavní cesta vedle hřiště",
+            "picture": "/jpg/gallery/cesta_01.jpg"
+        },
+        {
+            "name": "Hlavní cesta vedle chodníku směřující na výletiště",
+            "picture": "/jpg/gallery/cesta_02.jpg"
+        },
+        {
+            "name": "Gril vedle chodníku směřující na výletiště",
+            "picture": "/jpg/gallery/vyletiste_01.jpg"
+        },
+        {
+            "name": "Mnoho laviček na sezení vedle výletiště",
+            "picture": "/jpg/gallery/vyletiste_02.jpg"
+        },
+        {
+            "name": "Velké výletiště",
+            "picture": "/jpg/gallery/vyletiste_03.jpg"
+        },
+        {
+            "name": "Schodiště pro Kulturní dům",
+            "picture": "/jpg/gallery/schody_01.jpg"
+        },
+        {
+            "name": "Konec hlavní cesty, která končí jako parkoviště",
+            "picture": "/jpg/gallery/cesta_03.jpg"
+        }
+    ]
+}
