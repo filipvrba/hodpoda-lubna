@@ -11,7 +11,7 @@ export default class ElmMap < HTMLElement
     template = """
 <section class='mb-4 text-center'>
   <h2>Kde nás najdete</h2>
-  <p>Najdete nás za Kulturním domem, vedle hlavní cesty. Před hospodou je spousta laviček a dětské hřiště, což usnadňuje orientaci. V době, kdy je pivnice otevřena, nás snadno uvidíte, jak obsluhujeme hosty. K nám se můžete dostat pěšky, kde na vás před kulturním domem čeká několik schodů. Pokud preferujete automobil, můžete pohodlně přijet a zaparkovat vedle kulturního domu na konci cesty.</p>
+  <p>Najdete nás za Kulturním domem v Lubné, vedle hlavní cesty. Před hospodou je spousta laviček a dětské hřiště, což usnadňuje orientaci. V době, kdy je pivnice otevřena, nás snadno uvidíte, jak obsluhujeme hosty. K nám se můžete dostat pěšky, kde na vás před kulturním domem čeká několik schodů. Pokud preferujete automobil, můžete pohodlně přijet a zaparkovat vedle kulturního domu na konci cesty.</p>
   <a href='#{@picnice_uri}' target='_blank'>
     <img src='/jpg/map_01.jpg' class='img-fluid img-radius' alt='Mapa s polohou hospody'>
   </a>
