@@ -17,7 +17,10 @@ export default class ElmHeader < HTMLElement
     template = """
 <nav class='navbar navbar-expand-lg'>
   <div class='container'>
-    <a class='navbar-brand' href='#' onclick='headerHide()'>#{@title}</a>
+    <a class='navbar-brand' href='#' onclick='headerHide()'>
+      <img src='/png/logo_pivnice-256x256.png' alt='#{@title}' style='height: 64px;'>
+      #{@title}
+    </a>
     <button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
       <span class='navbar-toggler-icon'></span>
     </button>
