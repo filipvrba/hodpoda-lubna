@@ -15,6 +15,12 @@
     border-radius:  0.375rem;
 }
 
+.max-256 {
+    max-width: 256px;
+    width: 100%;
+    height: auto;
+}
+
 /* elm-lazy-image */
 .blurred-img {
     background-repeat: no-repeat;

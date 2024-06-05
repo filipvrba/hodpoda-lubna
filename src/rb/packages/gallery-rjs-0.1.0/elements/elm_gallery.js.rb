@@ -3,6 +3,7 @@ export default class ElmGallery < HTMLElement
     super
     
     @gallery_index_history = nil
+    @name = self.get_attribute('name')
 
     window.gallery_click = gallery_click
     window.modal_btn_prev_click = modal_btn_prev_click
@@ -20,7 +21,7 @@ export default class ElmGallery < HTMLElement
   end
 
   def relevant_gallery
-    GALLERY_JSON
+    GALLERY_JSON[@name]
   end
 
   def modal_btn_prev_click()
@@ -37,9 +38,8 @@ export default class ElmGallery < HTMLElement
 
   def init_elm()
     template = """
-<div class='container mt-5'>
+<div class='container'>
   <div class='row vertical-center'>
-    <h1 class='text-center mb-4'>Galerie</h1>
     #{subinit_elm()}
   </div>
 </div>

@@ -6,6 +6,7 @@ export default class ElmGalleryPagination extends ElmGallery {
     this._url = new URL(window.location.href);
     this._urlParams = new URLSearchParams(this._url.search);
     this._pageIndex = this.getPageIndex();
+    this._name = this.getAttribute("name");
     window.changeGallery = this.changeGallery.bind(this);
     window.scrollGallery = this.scrollGallery.bind(this)
   };
@@ -47,8 +48,12 @@ export default class ElmGalleryPagination extends ElmGallery {
     }
   };
 
+  get galleryJson() {
+    return GALLERY_JSON[this._name]
+  };
+
   get pagesCount() {
-    return Math.ceil(GALLERY_JSON.gallery.length / ElmGalleryPagination.MAX_LENGTH)
+    return Math.ceil(this.galleryJson.gallery.length / ElmGalleryPagination.MAX_LENGTH)
   };
 
   get relevantGallery() {
@@ -57,8 +62,8 @@ export default class ElmGalleryPagination extends ElmGallery {
     let maxIndex = minIndex + ElmGalleryPagination.MAX_LENGTH;
 
     for (let i = minIndex; i < maxIndex; i++) {
-      if (i < GALLERY_JSON.gallery.length) {
-        result.gallery.push(GALLERY_JSON.gallery[i])
+      if (i < this.galleryJson.gallery.length) {
+        result.gallery.push(this.galleryJson.gallery[i])
       } else {
         break
       }

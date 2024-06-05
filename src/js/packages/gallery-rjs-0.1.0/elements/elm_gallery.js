@@ -2,6 +2,7 @@ export default class ElmGallery extends HTMLElement {
   constructor() {
     super();
     this._galleryIndexHistory = null;
+    this._name = this.getAttribute("name");
     window.galleryClick = this.galleryClick.bind(this);
     window.modalBtnPrevClick = this.modalBtnPrevClick.bind(this);
     window.modalBtnNextClick = this.modalBtnNextClick.bind(this)
@@ -18,7 +19,7 @@ export default class ElmGallery extends HTMLElement {
   };
 
   get relevantGallery() {
-    return GALLERY_JSON
+    return GALLERY_JSON[this._name]
   };
 
   modalBtnPrevClick() {
@@ -38,9 +39,8 @@ export default class ElmGallery extends HTMLElement {
 
   initElm() {
     let template = `${`
-<div class='container mt-5'>
+<div class='container'>
   <div class='row vertical-center'>
-    <h1 class='text-center mb-4'>Galerie</h1>
     ${this.subinitElm()}
   </div>
 </div>

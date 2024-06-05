@@ -6,9 +6,10 @@ export default class ElmGalleryPagination < ElmGallery
 
   def initialize
     super
-    @url = URL.new(window.location.href)
+    @url        = URL.new(window.location.href)
     @url_params = URLSearchParams.new(@url.search)
     @page_index = get_page_index()
+    @name       = self.get_attribute('name')
     
 
     window.change_gallery = change_gallery
@@ -57,8 +58,12 @@ export default class ElmGalleryPagination < ElmGallery
     end
   end
 
+  def gallery_json
+    GALLERY_JSON[@name]
+  end
+
   def pages_count
-    Math.ceil(GALLERY_JSON.gallery.length / MAX_LENGTH)
+    Math.ceil(gallery_json.gallery.length / MAX_LENGTH)
   end
 
   def relevant_gallery
@@ -68,8 +73,8 @@ export default class ElmGalleryPagination < ElmGallery
     max_index = min_index + MAX_LENGTH
 
     (min_index...max_index).each do |i|
-      if i < GALLERY_JSON.gallery.length
-        result.gallery << GALLERY_JSON.gallery[i]
+      if i < gallery_json.gallery.length
+        result.gallery << gallery_json.gallery[i]
       else
         break
       end
