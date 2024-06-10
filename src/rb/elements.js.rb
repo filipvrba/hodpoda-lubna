@@ -10,3 +10,12 @@ window.custom_elements.define('elm-opening-hours', ElmOpeningHours)
 
 import 'ElmMap', './elements/elm_map'
 window.custom_elements.define('elm-map', ElmMap)
+
+import 'ElmAdminLogin', './elements/elm_admin_login'
+window.custom_elements.define('elm-admin-login', ElmAdminLogin)
+
+import 'ElmAdmin', './elements/elm_admin'
+window.custom_elements.define('elm-admin', ElmAdmin)
+
+import 'ElmAdminDashboard', './elements/elm_admin_dashboard'
+window.custom_elements.define('elm-admin-dashboard', ElmAdminDashboard)

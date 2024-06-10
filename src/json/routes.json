@@ -19,6 +19,11 @@
         "title": "Megahate",
         "endpoint": "megahate",
         "priority": 2
+      },
+      {
+        "title": "Admin",
+        "endpoint": "admin",
+        "priority": 2
       }
     ]
   }
