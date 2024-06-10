@@ -7,6 +7,7 @@ import 'cellarGallery', '../json/cellar_gallery.json'
 import 'megahateGallery', '../json/megahate_gallery.json'
 
 import './core'
+import './third_side'
 import './elements'
 import './pages'
 

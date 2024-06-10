@@ -29,9 +29,16 @@ export default class ElmAdminLogin extends HTMLElement {
   adminCheckPassword() {
     let plainPassword = this._inputPasswordDom.value;
     let hashedPassword = CryptoJS.MD5(plainPassword).toString();
-    let correctPassword = "21232f297a57a5a743894a0e4a801fc3";
-    let isCorrect = hashedPassword === correctPassword;
-    return Events.emit("#app", ElmAdminLogin.ENVS.login, isCorrect)
+
+    return _BefDb.get(
+      "SELECT password_hash FROM users WHERE username='admin' AND is_admin=1;",
+
+      (rows) => {
+        let data = rows[0];
+        let isCorrect = hashedPassword === data.password_hash;
+        return Events.emit("#app", ElmAdminLogin.ENVS.login, isCorrect)
+      }
+    )
   };
 
   adminPasswordInputChange() {

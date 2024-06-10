@@ -29,10 +29,14 @@ export default class ElmAdminLogin < HTMLElement
   def admin_check_password()
     plain_password  = @input_password_dom.value
     hashed_password = CryptoJS::MD5(plain_password).to_s
-    correct_password = '21232f297a57a5a743894a0e4a801fc3'
 
-    is_correct = hashed_password == correct_password
-    Events.emit('#app', ElmAdminLogin::ENVS[:login], is_correct)
+    __bef_db.get("SELECT password_hash FROM users " +
+                 "WHERE username='admin' AND is_admin=1;") do |rows|
+
+      data = rows[0]
+      is_correct = hashed_password == data['password_hash']
+      Events.emit('#app', ElmAdminLogin::ENVS[:login], is_correct)
+    end
   end
 
   def admin_password_input_change()

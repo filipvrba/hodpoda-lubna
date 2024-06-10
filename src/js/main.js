@@ -5,6 +5,7 @@ import routesObj from "../json/routes.json";
 import cellarGallery from "../json/cellar_gallery.json";
 import megahateGallery from "../json/megahate_gallery.json";
 import "./core";
+import "./third_side";
 import "./elements";
 import "./pages";
 window.ROUTES_JSON = routesObj;
