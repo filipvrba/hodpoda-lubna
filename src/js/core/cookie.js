@@ -2,6 +2,7 @@ class Cookie {
   static get(name) {
     let nameEQ = `${name}=`;
     let ca = document.cookie.split(";");
+    console.log(document.cookie);
 
     for (let i = 0; i < ca.length; i++) {
       let c = ca[i];
@@ -24,11 +25,13 @@ class Cookie {
       expires = "; expires=" + date.toUTCString()
     };
 
-    return document.cookie = `${name}=${value || ""}${expires}; path=/; Secure; SameSite=Lax`
+    document.cookie = `${name}=${value || ""}${expires}; path=/; Secure; SameSite=Lax`;
+    return console.log(document.cookie)
   };
 
   static erase(name) {
-    return document.cookie = `${name}=; Max-Age=-99999999; path=/; Secure; SameSite=Lax`
+    document.cookie = `${name}=; Max-Age=-99999999; path=/; Secure; SameSite=Lax`;
+    return console.log(document.cookie)
   }
 };
 

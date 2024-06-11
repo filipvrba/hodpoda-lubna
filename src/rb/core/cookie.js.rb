@@ -3,6 +3,8 @@ class Cookie
     nameEQ = "#{name}="
     ca     = document.cookie.split(';')
 
+    puts document.cookie
+
     (0 ... ca.length).each do |i|
       c = ca[i]
       while c.char_at(0) == ' '
@@ -27,10 +29,14 @@ class Cookie
     end
 
     document.cookie = "#{name}=#{(value || "")}#{expires}; path=/; Secure; SameSite=Lax"
+
+    puts document.cookie
   end
 
   def self.erase(name)
     document.cookie = "#{name}=; Max-Age=-99999999; path=/; Secure; SameSite=Lax"
+
+    puts document.cookie
   end
 end
 window.Cookie = Cookie
