@@ -30,8 +30,6 @@ export default class Net
 
   def self.bef_send(method, query, &callback)
     method = method.upcase()
-
-    puts query
     
     fetch(ENV::VITE_URL_API, {
       method: method,
