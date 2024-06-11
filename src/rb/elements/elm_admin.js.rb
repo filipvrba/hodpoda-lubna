@@ -22,13 +22,17 @@ export default class ElmAdmin < HTMLElement
       return
     end
 
-    self.innerHTML = "<elm-admin-dashboard></elm-admin-dashboard>"
+    Cookie.set("loggedIn", "true", 30)
+    init_elm()
   end
 
   def init_elm()
-    template = """
-    <elm-admin-login></elm-admin-login>
-    """
+    is_logged_in = Cookie.get('loggedIn') == 'true'
+    template = "<elm-admin-login></elm-admin-login>"
+
+    if is_logged_in
+      template = "<elm-admin-dashboard></elm-admin-dashboard>"
+    end
 
     self.innerHTML = template
   end

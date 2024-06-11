@@ -29,11 +29,14 @@ export default class ElmAdmin extends HTMLElement {
       return
     };
 
-    return this.innerHTML = "<elm-admin-dashboard></elm-admin-dashboard>"
+    Cookie.set("loggedIn", "true", 30);
+    return this.initElm()
   };
 
   initElm() {
-    let template = `${`\n    <elm-admin-login></elm-admin-login>\n    `}`;
+    let isLoggedIn = Cookie.get("loggedIn") === "true";
+    let template = "<elm-admin-login></elm-admin-login>";
+    if (isLoggedIn) template = "<elm-admin-dashboard></elm-admin-dashboard>";
     return this.innerHTML = template
   }
 }
