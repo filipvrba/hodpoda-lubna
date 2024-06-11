@@ -1,7 +1,7 @@
 class Cookie
   def self.get(name)
     nameEQ = "#{name}="
-    ca     = " loggedIn=true".split(';')
+    ca     = document.cookie.split(';')
 
     ca.each do |c|
       c_index = c.index(nameEQ)

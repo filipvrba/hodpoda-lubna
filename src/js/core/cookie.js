@@ -1,7 +1,7 @@
 class Cookie {
   static get(name) {
     let nameEQ = `${name}=`;
-    let ca = " loggedIn=true".split(";");
+    let ca = document.cookie.split(";");
 
     for (let c of ca) {
       let cIndex = c.indexOf(nameEQ);
