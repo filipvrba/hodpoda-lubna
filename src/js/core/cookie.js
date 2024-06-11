@@ -24,11 +24,11 @@ class Cookie {
       expires = "; expires=" + date.toUTCString()
     };
 
-    return document.cookie = name + "=" + (value || "") + expires + "; path=/"
+    return document.cookie = `${name}=${value || ""}${expires}; path=/; Secure; SameSite=Strict`
   };
 
   static erase(name) {
-    return document.cookie = name + "=; Max-Age=-99999999;"
+    return document.cookie = `${name}=; Max-Age=-99999999; path=/; Secure; SameSite=Strict`
   }
 };
 
