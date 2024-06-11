@@ -30,6 +30,8 @@ export default class ElmAdmin < HTMLElement
     is_logged_in = Cookie.get('loggedIn') == 'true'
     template = "<elm-admin-login></elm-admin-login>"
 
+    puts Cookie.get('loggedIn'), is_logged_in
+
     if is_logged_in
       template = "<elm-admin-dashboard></elm-admin-dashboard>"
     end

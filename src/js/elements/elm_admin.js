@@ -36,6 +36,7 @@ export default class ElmAdmin extends HTMLElement {
   initElm() {
     let isLoggedIn = Cookie.get("loggedIn") === "true";
     let template = "<elm-admin-login></elm-admin-login>";
+    console.log(Cookie.get("loggedIn"), isLoggedIn);
     if (isLoggedIn) template = "<elm-admin-dashboard></elm-admin-dashboard>";
     return this.innerHTML = template
   }
