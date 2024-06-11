@@ -1,18 +1,12 @@
 class Cookie
   def self.get(name)
     nameEQ = "#{name}="
-    ca     = document.cookie.split(';')
+    ca     = " loggedIn=true".split(';')
 
-    puts ca
-
-    (0 ... ca.length).each do |i|
-      c = ca[i]
-      while c.char_at(0) == ' '
-        c = c.substring(1, c.length)
-        
-        if c.index(nameEQ) == 0
-          return c.substring(nameEQ.length, c.length)
-        end
+    ca.each do |c|
+      c_index = c.index(nameEQ)
+      if c_index > -1
+        return c.sub(nameEQ, '').strip
       end
     end
 

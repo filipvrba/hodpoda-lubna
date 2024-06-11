@@ -1,16 +1,11 @@
 class Cookie {
   static get(name) {
     let nameEQ = `${name}=`;
-    let ca = document.cookie.split(";");
-    console.log(ca);
+    let ca = " loggedIn=true".split(";");
 
-    for (let i = 0; i < ca.length; i++) {
-      let c = ca[i];
-
-      while (c.charAt(0) === " ") {
-        c = c.substring(1, c.length);
-        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length)
-      }
+    for (let c of ca) {
+      let cIndex = c.indexOf(nameEQ);
+      if (cIndex > -1) return c.replace(nameEQ, "").trim()
     };
 
     return null
