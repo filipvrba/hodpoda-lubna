@@ -26,11 +26,11 @@ class Cookie
       expires = "; expires=" + date.toUTC_string()
     end
 
-    document.cookie = "#{name}=#{(value || "")}#{expires}; path=/; Secure; SameSite=Strict"
+    document.cookie = "#{name}=#{(value || "")}#{expires}; path=/; Secure; SameSite=Lax"
   end
 
   def self.erase(name)
-    document.cookie = "#{name}=; Max-Age=-99999999; path=/; Secure; SameSite=Strict"
+    document.cookie = "#{name}=; Max-Age=-99999999; path=/; Secure; SameSite=Lax"
   end
 end
 window.Cookie = Cookie
