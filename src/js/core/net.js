@@ -20,7 +20,6 @@ export default class Net {
 
   static befSend(method, query, callback) {
     method = method.toUpperCase();
-    console.log(query);
 
     return fetch(ENV.VITE_URL_API, {method, headers: {
       Token: ENV.VITE_BEF_SERVER,
