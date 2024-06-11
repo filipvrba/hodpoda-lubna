@@ -2,7 +2,9 @@ class Cookie
   def self.get(name)
     nameEQ = "#{name}="
     ca     = document.cookie.split(';')
-    
+
+    puts ca
+
     (0 ... ca.length).each do |i|
       c = ca[i]
       while c.char_at(0) == ' '
@@ -26,11 +28,11 @@ class Cookie
       expires = "; expires=" + date.toUTC_string()
     end
 
-    document.cookie = "#{name}=#{(value || "")}#{expires}; path=/; Secure; SameSite=Lax"
+    document.cookie = "#{name}=#{(value || "")}#{expires}; path=/; Secure; SameSite=Strict"
   end
 
   def self.erase(name)
-    document.cookie = "#{name}=; Max-Age=-99999999; path=/; Secure; SameSite=Lax"
+    document.cookie = "#{name}=; Max-Age=-99999999; path=/; Secure; SameSite=Strict"
   end
 end
 window.Cookie = Cookie
