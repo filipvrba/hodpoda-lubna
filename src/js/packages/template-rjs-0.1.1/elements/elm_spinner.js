@@ -1,13 +1,16 @@
 export default class ElmSpinner extends HTMLElement {
   constructor() {
     super();
+    this._classAttr = this.getAttribute("class");
     this.initElm()
   };
 
   initElm() {
     let template = `${`
-<div class='spinner-border text-primary' role='status'>
-  <span class='visually-hidden'>Loading...</span>
+<div class='${this._classAttr}'>
+  <div class='spinner-border text-warning' role='status'>
+    <span class='visually-hidden'>Loading...</span>
+  </div>
 </div>
     `}`;
     return this.innerHTML = template

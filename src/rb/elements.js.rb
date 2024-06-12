@@ -19,3 +19,6 @@ window.custom_elements.define('elm-admin', ElmAdmin)
 
 import 'ElmAdminDashboard', './elements/elm_admin_dashboard'
 window.custom_elements.define('elm-admin-dashboard', ElmAdminDashboard)
+
+import 'ElmAdminOpeningHours', './elements/elm_admin_opening_hours'
+window.custom_elements.define('elm-admin-opening-hours', ElmAdminOpeningHours)

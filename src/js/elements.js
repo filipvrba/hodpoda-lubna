@@ -15,4 +15,11 @@ import ElmAdminDashboard from "./elements/elm_admin_dashboard";
 window.customElements.define(
   "elm-admin-dashboard",
   ElmAdminDashboard
+);
+
+import ElmAdminOpeningHours from "./elements/elm_admin_opening_hours";
+
+window.customElements.define(
+  "elm-admin-opening-hours",
+  ElmAdminOpeningHours
 )

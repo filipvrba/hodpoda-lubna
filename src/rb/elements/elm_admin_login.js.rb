@@ -30,11 +30,12 @@ export default class ElmAdminLogin < HTMLElement
     plain_password  = @input_password_dom.value
     hashed_password = CryptoJS::MD5(plain_password).to_s
 
-    __bef_db.get("SELECT password_hash FROM users " +
-                 "WHERE username='admin' AND is_admin=1;") do |rows|
-
+    query = "SELECT CASE WHEN password_hash = '#{hashed_password}' " +
+            "THEN 'true' ELSE 'false' END AS token_status FROM users " +
+            "WHERE username = 'admin' AND is_admin=1 LIMIT 1;"
+    __bef_db.get(query) do |rows|
       data = rows[0]
-      is_correct = hashed_password == data['password_hash']
+      is_correct = data['token_status'] == 'true'
       Events.emit('#app', ElmAdminLogin::ENVS[:login], is_correct)
     end
   end
