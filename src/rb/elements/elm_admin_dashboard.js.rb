@@ -2,6 +2,8 @@ export default class ElmAdminDashboard < HTMLElement
   def initialize
     super
 
+    @h_tick = lambda { |e| update(e.detail.value) }
+
     init_elm()
   end
 
@@ -12,9 +14,15 @@ export default class ElmAdminDashboard < HTMLElement
   def disconnected_callback()
   end
 
+  def update(dt)
+    
+  end
+
   def init_elm()
     template = """
 <div class='col-md-8 mx-auto'>
+  <elm-alert></elm-alert>
+
   <nav>
     <div class='nav nav-tabs mb-3 justify-content-center' id='nav-tab' role='tablist'>
       <button class='nav-link active' id='nav-opening-hours-tab' data-bs-toggle='tab' data-bs-target='#nav-opening-hours' type='button' role='tab' aria-controls='nav-opening-hours' aria-selected='false' tabindex='-1'>Otevírací doba</button>

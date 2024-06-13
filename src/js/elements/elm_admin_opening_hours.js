@@ -1,3 +1,5 @@
+import ElmAlert from "./elm_alert";
+
 export default class ElmAdminOpeningHours extends HTMLElement {
   constructor() {
     super();
@@ -14,7 +16,9 @@ export default class ElmAdminOpeningHours extends HTMLElement {
         let data = {openingHours: week};
         return this.initElm(data)
       }
-    )
+    );
+
+    window.aohSaveClick = this.saveClick.bind(this)
   };
 
   connectedCallback() {
@@ -23,6 +27,38 @@ export default class ElmAdminOpeningHours extends HTMLElement {
 
   disconnectedCallback() {
     return null
+  };
+
+  saveClick() {
+    let lDayValues = day => (
+      [
+        document.getElementById(`${day}_od`).value,
+        document.getElementById(`${day}_do`).value
+      ]
+    );
+
+    let days = [];
+
+    for (let day of "pondeli utery streda ctvrtek patek sobota nedele".split(" ")) {
+      let times = lDayValues(day);
+      days.push(times[0].length === 0 || times[1].length === 0 ? "" : times.join("-"))
+    };
+
+    return _BefDb.set(
+      `UPDATE opening_hours SET monday = '${days[0]}', tuesday = '${days[1]}', wednesday = '${days[2]}', thursday = '${days[3]}', friday = '${days[4]}', saturday = '${days[5]}', sunday = '${days[6]}' WHERE user_id = 1;`,
+
+      (isSave) => {
+        if (isSave) {
+          Events.emit(
+            "#app",
+            ElmAlert.ENVS.SHOW,
+            {endTime: 7, message: "Otevírací doba byla úspěšně uložena."}
+          );
+
+          return window.scrollTo(0, 0)
+        }
+      }
+    )
   };
 
   initElm(data) {
@@ -74,6 +110,9 @@ export default class ElmAdminOpeningHours extends HTMLElement {
       </tr>
     </tbody>
   </table>
+  <div class='text-center'>
+    <button class='btn btn-warning' onclick='aohSaveClick()'>Uložit</button>
+  </div>
 </div>
     `}`;
     return this.innerHTML = template

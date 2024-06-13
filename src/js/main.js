@@ -17,5 +17,13 @@ window.GALLERY_JSON = {
   "megahate-gallery": megahateGallery
 };
 
-window.ENVS = {GALLERY_CLICK: 0};
+window.ENVS = {GALLERY_CLICK: 0, TICK: 1};
+let clock = new Clock;
+
+function tick() {
+  Events.emit("#app", ENVS.TICK, clock.deltaTime());
+  return requestAnimationFrame(() => tick())
+};
+
+tick();
 document.querySelector("#app").innerHTML = `${`\n<elm-priority-routes></elm-priority-routes>\n`}`

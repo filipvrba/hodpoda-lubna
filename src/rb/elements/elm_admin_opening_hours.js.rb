@@ -1,3 +1,5 @@
+import 'ElmAlert', './elm_alert'
+
 export default class ElmAdminOpeningHours < HTMLElement
   def initialize
     super
@@ -13,12 +15,42 @@ export default class ElmAdminOpeningHours < HTMLElement
       }
       init_elm(data)
     end
+
+    window.aoh_save_click = save_click
   end
 
   def connected_callback()
   end
 
   def disconnected_callback()
+  end
+
+  def save_click()
+    l_day_values = lambda do |day|
+      return [
+        document.get_element_by_id("#{day}_od").value,
+        document.get_element_by_id("#{day}_do").value
+      ]
+    end
+    days = []
+    "pondeli utery streda ctvrtek patek sobota nedele".split(' ').each do |day|
+      times = l_day_values(day)
+      days << ((times[0].empty? || times[1].empty?) ? '' : times.join('-'))
+    end
+
+    __bef_db.set("UPDATE opening_hours SET monday = '#{days[0]}', " +
+                 "tuesday = '#{days[1]}', wednesday = '#{days[2]}', " +
+                 "thursday = '#{days[3]}', friday = '#{days[4]}', " +
+                 "saturday = '#{days[5]}', sunday = '#{days[6]}' " +
+                 "WHERE user_id = 1;") do |is_save|
+      if is_save
+        Events.emit('#app', ElmAlert::ENVS::SHOW, {
+          end_time: 7,
+          message: "Otevírací doba byla úspěšně uložena."
+        })
+        window.scroll_to(0, 0)
+      end
+    end
   end
 
   def init_elm(data)
@@ -70,6 +102,9 @@ export default class ElmAdminOpeningHours < HTMLElement
       </tr>
     </tbody>
   </table>
+  <div class='text-center'>
+    <button class='btn btn-warning' onclick='aohSaveClick()'>Uložit</button>
+  </div>
 </div>
     """
 

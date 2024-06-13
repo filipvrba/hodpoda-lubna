@@ -20,7 +20,16 @@ window.GALLERY_JSON = {
 }
 window.ENVS = {
   GALLERY_CLICK: 0,
+  TICK: 1,
 }
+
+clock = Clock.new
+def tick()
+  Events.emit('#app', ENVS::TICK, clock.delta_time())
+  
+  request_animation_frame lambda { tick() }
+end
+tick()
 
 document.querySelector('#app').innerHTML = """
 <elm-priority-routes></elm-priority-routes>

@@ -22,4 +22,7 @@ import ElmAdminOpeningHours from "./elements/elm_admin_opening_hours";
 window.customElements.define(
   "elm-admin-opening-hours",
   ElmAdminOpeningHours
-)
+);
+
+import ElmAlert from "./elements/elm_alert";
+window.customElements.define("elm-alert", ElmAlert)
