@@ -25,4 +25,6 @@ window.customElements.define(
 );
 
 import ElmAlert from "./elements/elm_alert";
-window.customElements.define("elm-alert", ElmAlert)
+window.customElements.define("elm-alert", ElmAlert);
+import ElmAdminProfile from "./elements/elm_admin_profile";
+window.customElements.define("elm-admin-profile", ElmAdminProfile)

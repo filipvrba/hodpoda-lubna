@@ -6,11 +6,8 @@ export default class ElmGalleryPagination < ElmGallery
 
   def initialize
     super
-    @url        = URL.new(window.location.href)
-    @url_params = URLSearchParams.new(@url.search)
     @page_index = get_page_index()
     @name       = self.get_attribute('name')
-    
 
     window.change_gallery = change_gallery
     window.scroll_gallery = scroll_gallery
@@ -21,8 +18,7 @@ export default class ElmGalleryPagination < ElmGallery
       return number >= min && number <= max
     end
 
-    index = @url_params.get(PARAMETER) == nil ?
-      0 : @url_params.get(PARAMETER).to_i
+    index = URLParams.get_index(PARAMETER)
     
     min_index = @page_index * MAX_LENGTH
     max_index = min_index + MAX_LENGTH
@@ -43,9 +39,7 @@ export default class ElmGalleryPagination < ElmGallery
 
   def change_gallery(page_index)
     @page_index = page_index
-    @url_params.set(PARAMETER, @page_index)
-    @url.search = @url_params.to_string()
-    window.history.push_state({}, '', @url)
+    URLParams.set(PARAMETER, @page_index)
 
     init_elm()
   end

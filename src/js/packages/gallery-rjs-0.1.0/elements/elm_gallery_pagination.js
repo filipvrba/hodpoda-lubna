@@ -3,8 +3,6 @@ import ElmGallery from "./elm_gallery";
 export default class ElmGalleryPagination extends ElmGallery {
   constructor() {
     super();
-    this._url = new URL(window.location.href);
-    this._urlParams = new URLSearchParams(this._url.search);
     this._pageIndex = this.getPageIndex();
     this._name = this.getAttribute("name");
     window.changeGallery = this.changeGallery.bind(this);
@@ -13,7 +11,7 @@ export default class ElmGalleryPagination extends ElmGallery {
 
   getPageIndex() {
     let isInRange = (number, min, max) => number >= min && number <= max;
-    let index = this._urlParams.get(ElmGalleryPagination.PARAMETER) === null ? 0 : parseInt(this._urlParams.get(ElmGalleryPagination.PARAMETER));
+    let index = URLParams.getIndex(ElmGalleryPagination.PARAMETER);
     let minIndex = this._pageIndex * ElmGalleryPagination.MAX_LENGTH;
     let maxIndex = minIndex + ElmGalleryPagination.MAX_LENGTH;
 
@@ -34,9 +32,7 @@ export default class ElmGalleryPagination extends ElmGallery {
 
   changeGallery(pageIndex) {
     this._pageIndex = pageIndex;
-    this._urlParams.set(ElmGalleryPagination.PARAMETER, this._pageIndex);
-    this._url.search = this._urlParams.toString();
-    window.history.pushState({}, "", this._url);
+    URLParams.set(ElmGalleryPagination.PARAMETER, this._pageIndex);
     return this.initElm()
   };
 
