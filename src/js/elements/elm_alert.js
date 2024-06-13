@@ -22,7 +22,8 @@ export default class ElmAlert extends HTMLElement {
     this._isEnable = true;
     this._time = 0;
     this._endTime = data.endTime;
-    return this.initElm(data.message)
+    this.initElm(data.message);
+    return window.scrollTo(0, 0)
   };
 
   update(dt) {

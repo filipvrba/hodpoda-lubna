@@ -29,6 +29,7 @@ export default class ElmAlert < HTMLElement
     @end_time = data.end_time
 
     init_elm(data.message)
+    window.scroll_to(0, 0)
   end
 
   def update(dt)

@@ -48,7 +48,6 @@ export default class ElmAdminOpeningHours < HTMLElement
           end_time: 7,
           message: "Otevírací doba byla úspěšně uložena."
         })
-        window.scroll_to(0, 0)
       end
     end
   end

@@ -4,26 +4,47 @@ export default class ElmAdminLogin extends HTMLElement {
   constructor() {
     super();
     this._hAdminValidation = e => this.validationAdminPassword(e.detail.value);
+
+    this._hInputPasswordBtn = (_) => {
+      return this.inputPasswordBtn()
+    };
+
     this.initElm();
     this._inputPasswordDom = document.getElementById("adminPassword");
+    this._inputPasswordDom.focus();
     window.adminCheckPassword = this.adminCheckPassword.bind(this);
     window.adminPasswordInputChange = this.adminPasswordInputChange.bind(this)
   };
 
   connectedCallback() {
-    return Events.connect(
+    Events.connect(
       "#app",
       ElmAdminLogin.ENVS.validation,
       this._hAdminValidation
+    );
+
+    return this._inputPasswordDom.addEventListener(
+      "keypress",
+      this._hInputPasswordBtn
     )
   };
 
   disconnectedCallback() {
-    return Events.disconnect(
+    Events.disconnect(
       "#app",
       ElmAdminLogin.ENVS.validation,
       this._hAdminValidation
+    );
+
+    return this._inputPasswordDom.removeEventListener(
+      "keypress",
+      this._hInputPasswordBtn
     )
+  };
+
+  inputPasswordBtn() {
+    if (event.key !== "Enter") return;
+    return document.getElementById("adminPasswordBtn").click()
   };
 
   adminCheckPassword() {
@@ -56,7 +77,7 @@ export default class ElmAdminLogin extends HTMLElement {
     Při přihlášení jste zadali špatné heslo!
   </div>
 
-  <button class='btn btn-primary mt-3 mb-5' onclick='adminCheckPassword()'>Přihlásit se</button>
+  <button class='btn btn-warning mt-3 mb-5' id='adminPasswordBtn' onclick='adminCheckPassword()'>Přihlásit se</button>
   <div class='alert alert-warning mb-3' role='alert'>
     <em>Pro přístup k administraci tohoto webu je nutné se přihlásit. Po úspěšném přihlášení jako správce budete moci upravovat a spravovat obsah stránky.</em>
   </div>

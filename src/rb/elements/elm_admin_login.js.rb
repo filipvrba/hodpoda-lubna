@@ -10,9 +10,11 @@ export default class ElmAdminLogin < HTMLElement
     super
     
     @h_admin_validation = lambda { |e| validation_admin_password(e.detail.value) }
+    @h_input_password_btn = lambda { |_| input_password_btn() }
 
     init_elm()
     @input_password_dom = document.get_element_by_id('adminPassword')
+    @input_password_dom.focus()
 
     window.admin_check_password = admin_check_password
     window.admin_password_input_change = admin_password_input_change
@@ -20,10 +22,20 @@ export default class ElmAdminLogin < HTMLElement
 
   def connected_callback()
     Events.connect('#app', ElmAdminLogin::ENVS[:validation], @h_admin_validation)
+    @input_password_dom.add_event_listener('keypress', @h_input_password_btn)
   end
 
   def disconnected_callback()
     Events.disconnect('#app', ElmAdminLogin::ENVS[:validation], @h_admin_validation)
+    @input_password_dom.remove_event_listener('keypress', @h_input_password_btn)
+  end
+
+  def input_password_btn()
+    unless event.key === 'Enter'
+      return
+    end
+
+    document.get_element_by_id('adminPasswordBtn').click()
   end
 
   def admin_check_password()
@@ -62,7 +74,7 @@ export default class ElmAdminLogin < HTMLElement
     Při přihlášení jste zadali špatné heslo!
   </div>
 
-  <button class='btn btn-primary mt-3 mb-5' onclick='adminCheckPassword()'>Přihlásit se</button>
+  <button class='btn btn-warning mt-3 mb-5' id='adminPasswordBtn' onclick='adminCheckPassword()'>Přihlásit se</button>
   <div class='alert alert-warning mb-3' role='alert'>
     <em>Pro přístup k administraci tohoto webu je nutné se přihlásit. Po úspěšném přihlášení jako správce budete moci upravovat a spravovat obsah stránky.</em>
   </div>

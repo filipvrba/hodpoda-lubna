@@ -49,13 +49,11 @@ export default class ElmAdminOpeningHours extends HTMLElement {
 
       (isSave) => {
         if (isSave) {
-          Events.emit(
+          return Events.emit(
             "#app",
             ElmAlert.ENVS.SHOW,
             {endTime: 7, message: "Otevírací doba byla úspěšně uložena."}
-          );
-
-          return window.scrollTo(0, 0)
+          )
         }
       }
     )
